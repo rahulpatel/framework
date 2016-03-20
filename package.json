@@ -1,0 +1,19 @@
+{
+  "name": "framework",
+  "version": "0.0.1",
+  "description": "An experimental framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulpatel/framework.git"
+  },
+  "author": "Rahul Patel <rahulpatel477@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rahulpatel/framework/issues"
+  },
+  "homepage": "https://github.com/rahulpatel/framework#readme"
+}
