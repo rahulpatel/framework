@@ -22,20 +22,8 @@ import Name from './components/Name';
 
 framework.setup();
 
-framework.route({
-  path: '*',
-
-  views: [
-    {
-      container: header,
-      component: Header
-    },
-    {
-      container: footer,
-      component: Footer
-    }
-  ]
-});
+framework.renderView(Header, { }, header);
+framework.renderView(Footer, { }, footer);
 
 framework.route({
   path: '/:name',

@@ -8,11 +8,23 @@ import page from 'page';
 const framework = {
 
   setup() {
-    this._preRouter();
+    this._setupRouter();
 
     if (__DEBUG__) {
       console.log('Framework setup');
     }
+  },
+
+  _setupRouter() {
+    page('*', (context, next) => {
+      context.query = qs.parse(context.querystring);
+
+      if (__DEBUG__) {
+        console.log('Ran pre-route ' + context.path);
+      }
+
+      next();
+    });
   },
 
   start() {
@@ -24,17 +36,6 @@ const framework = {
     }
   },
 
-  _preRouter() {
-    page('*', (context, next) => {
-      context.query = qs.parse(context.querystring);
-
-      if (__DEBUG__) {
-        console.log('Ran pre-route ' + context.path);
-      }
-
-      next();
-    });
-  },
 
   route(config) {
     if (__DEBUG__) {
@@ -60,18 +61,18 @@ const framework = {
 
     config.forEach((view) => {
       const props = view.props ? view.props(context) : { };
-      this._renderView(view.component, props, view.container);
+      this.renderView(view.component, props, view.container);
     });
   },
 
-  _renderView(Component, props, container) {
+  renderView(Component, props, container) {
 
     if (__DEBUG__) {
       console.log('Rendering view');
     }
 
     ReactDOM.render(<Component {...props} />, container);
-  }
+  },
 
 };
 export default framework;
