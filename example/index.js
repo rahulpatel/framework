@@ -22,6 +22,10 @@ import Name from './components/Name';
 
 framework.setup();
 
+const counter = framework.store('counter', {
+  counter: 0
+});
+
 framework.renderView(Header, { }, header);
 framework.renderView(Footer, { }, footer);
 
