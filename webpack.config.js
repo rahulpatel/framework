@@ -6,13 +6,15 @@ var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var definePlugin = new webpack.DefinePlugin({ });
+var definePlugin = new webpack.DefinePlugin({
+  __DEBUG__: (process.env.NODE_ENV === 'development')
+});
 var htmlWebpackPlugin = new HtmlWebpackPlugin({ title: 'Framework demo' });
 
 module.exports = {
   context: path.join(__dirname, 'src'),
 
-  entry: 'index.js',
+  entry: path.join(__dirname, 'example', 'index.js'),
 
   output: {
     path: path.join(__dirname, 'dist'),
@@ -21,6 +23,11 @@ module.exports = {
 
   module: {
     loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: require.resolve('react-hot-loader')
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
