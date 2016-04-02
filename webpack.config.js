@@ -13,10 +13,12 @@ var htmlWebpackPlugin = new HtmlWebpackPlugin({ title: 'Framework demo' });
 
 module.exports = {
   context: path.join(__dirname, 'src'),
+  devtool: 'eval',
 
-  entry: path.join(__dirname, 'example', 'index.js'),
+  entry: path.join(__dirname, 'example', 'app.js'),
 
   output: {
+    pathinfo: true,
     path: path.join(__dirname, 'dist'),
     filename: 'framework.js'
   },
