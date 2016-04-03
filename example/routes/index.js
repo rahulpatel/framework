@@ -12,7 +12,7 @@ framework.route({
 
   view: {
     container: appContainer,
-    props: (context) => {
+    props: (req) => {
       return {
         filter: 'SHOW_ALL'
       };
@@ -26,7 +26,7 @@ framework.route({
 
   view: {
     container: appContainer,
-    props: (context) => {
+    props: (req) => {
       return {
         filter: 'SHOW_ACTIVE'
       };
@@ -40,7 +40,7 @@ framework.route({
 
   view: {
     container: appContainer,
-    props: (context) => {
+    props: (req) => {
       return {
         filter: 'SHOW_COMPLETED'
       };

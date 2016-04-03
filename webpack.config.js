@@ -5,15 +5,20 @@ var os = require('os');
 var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
-var definePlugin = new webpack.DefinePlugin({
-  __DEBUG__: (process.env.NODE_ENV === 'development')
-});
 var htmlWebpackPlugin = new HtmlWebpackPlugin({ title: 'Framework demo' });
 
-module.exports = {
+var definePlugin = new webpack.DefinePlugin({
+  __DEBUG__: (process.env.NODE_ENV === 'development'),
+
+  process: {
+    env: {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+    }
+  }
+});
+
+var config = {
   context: path.join(__dirname, 'src'),
-  devtool: 'eval',
 
   entry: path.join(__dirname, 'example', 'app.js'),
 
@@ -56,3 +61,31 @@ module.exports = {
 
   cache: os.tmpdir()
 };
+
+switch (process.env.NODE_ENV) {
+  case 'development':
+    config.devtool = 'eval';
+
+    break;
+  case 'staging':
+
+    break;
+  case 'production':
+    config.devtool = 'source-map';
+    config.output.libraryTarget = 'commonjs2';
+
+    var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      output: {
+        space_colon: false,
+        comments: false
+      }
+    });
+    var debugPlugin = new webpack.optimize.DedupePlugin();
+
+    config.plugins.push(uglifyPlugin, debugPlugin);
+
+    break;
+}
+
+module.exports = config;

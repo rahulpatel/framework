@@ -1,29 +1,27 @@
 'use strict';
 
-import qs from 'querystring';
-import page from 'page';
-
-page.base('/#');
-page('*', (context, next) => {
-  context.query = qs.parse(context.querystring);
-  return next();
-});
+import Router from 'routerjs';
 
 const router = {
 
+  _setupRouter() {
+    this._router = new Router();
+  },
+
   route(config) {
     if (__DEBUG__) {
-      console.log(`[ROUTER][${config.path}] Added`);
+      console.log(`[ROUTER][#${config.path}] Added`);
     }
 
-    page(config.path, (context, next) => {
+    this._router.addRoute(`#${config.path}`, (req, next) => {
 
       if (__DEBUG__) {
-        console.log(`[ROUTER][${config.path}] Matched`);
+        console.log(`[ROUTER][#${config.path}] Matched`);
       }
 
-      this._viewsHandler(config.views || config.view, context);
-      return next();
+      this._viewsHandler(config.views || config.view, req);
+
+      if (req.hasNext) next();
     });
   }
 
