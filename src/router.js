@@ -2,7 +2,7 @@
 
 import Router from 'routerjs';
 
-const router = {
+export default {
 
   _setupRouter() {
     this._router = new Router();
@@ -14,9 +14,13 @@ const router = {
     }
 
     this._router.addRoute(`#${config.path}`, (req, next) => {
-
+      console.log(req);
       if (__DEBUG__) {
         console.log(`[ROUTER][#${config.path}] Matched`);
+      }
+
+      if (config.handler) {
+        config.handler(req);
       }
 
       this._viewsHandler(config.views || config.view, req);
@@ -26,5 +30,3 @@ const router = {
   }
 
 };
-
-export default router;

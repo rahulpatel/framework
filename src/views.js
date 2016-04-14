@@ -3,7 +3,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const views = {
+export default {
+
+  _viewRenderers: [],
 
   _viewsHandler(config, context) {
     if (!(config instanceof Array)) {
@@ -11,9 +13,13 @@ const views = {
     }
 
     config.forEach((view) => {
-      const props = view.props ? view.props(context) : { };
-      this.renderView(view.component, props, view.container);
+      this._viewRenderers.push(() => {
+        const props = view.props ? view.props(context) : { };
+        this.renderView(view.component, props, view.container);
+      });
     });
+
+    this._viewRenderers.forEach((view) => view());
   },
 
   renderView(Component, props, container) {
@@ -22,9 +28,7 @@ const views = {
       console.log('[VIEW] Rendering');
     }
 
-    this._renderedView = ReactDOM.render(<Component {...props} />, container);
+    ReactDOM.render(<Component {...props} />, container);
   }
 
 };
-
-export default views;

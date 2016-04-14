@@ -6,24 +6,25 @@ import views from './views';
 
 const framework = Object.assign({
 
-  setup() {
-    this._setupRouter();
-
+  setup({ defaultRoute = '/', PersistenceClass }) {
     if (__DEBUG__) {
       console.log('[FRAMEWORK] Setting up');
     }
+
+    this._defaultRoute = defaultRoute;
+    this._persistence = PersistenceClass ? new PersistenceClass() : null;
   },
 
   start() {
-    this._router.run('#/');
-
     if (__DEBUG__) {
       console.log('[FRAMEWORK] Started');
     }
+
+    this._router.run(this._defaultRoute);
   }
 
 }, router, views, stores);
 
-framework.setup();
+framework._setupRouter();
 
 export default framework;

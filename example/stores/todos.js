@@ -20,14 +20,14 @@ export const actions = {
   CLEAR_ALL
 };
 
-const store = framework.store('todos', [ ]);
+const store = framework.store('todos');
 
 let nextAvailId = 0;
 store.processor(ADD, (state, action) => {
   nextAvailId++;
   return [
     {
-      id: nextAvailId - 1,
+      id: nextAvailId + 1,
       title: action.title,
       completed: false
     },
