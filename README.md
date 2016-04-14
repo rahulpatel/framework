@@ -97,11 +97,9 @@ Provide the framework with a configuration for a route.
 
 **Arguments**
 
-* `options` - A [route configuration object](#routeConfiguration)
+* `options` - A [route configuration](#routeConfiguration) object.
 
 **Examples**
-
-With a single view:
 
 ```javascript
 const AppComponent = React.createClass({
@@ -162,6 +160,32 @@ A route configuration object supports the following properties:
 
 ---
 
+<a name="viewObject"></a>
+
+### View Object
+
+A view object supports the following properties:
+
+* `container` - A javascript element for where the given react component should be mounted.
+* `props` - A function that is called with the current routes [request object](#requestObject), it should return an object of props to pass to the react component.
+* `component` - A react component.
+
+**Example**
+
+```javascript
+{
+  container: document.getElementById('#my-app-container'),
+  props(req) {
+    return {
+      name: req.params.name
+    };
+  },
+  component: AppComponent
+}
+```
+
+---
+
 <a name="requestObject"></a>
 
 ### Request Object
@@ -201,31 +225,5 @@ For a path of `/:name/**`:
   splats: [
     'welcome/admin'
   ]
-}
-```
-
----
-
-<a name="viewObject"></a>
-
-### View Object
-
-A view object supports the following properties:
-
-* `container` - A javascript element for where the given react component should be mounted.
-* `props` - A function that is called with the current routes [request object](#requestObject), it should return an object of props to pass to the react component.
-* `component` - A react component.
-
-**Example**
-
-```javascript
-{
-  container: document.getElementById('#my-app-container'),
-  props(req) {
-    return {
-      name: req.params.name
-    };
-  },
-  component: AppComponent
 }
 ```
