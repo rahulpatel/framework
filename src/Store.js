@@ -37,11 +37,9 @@ class Store {
       console.log(`[STORE][${this._name}] Published ${action} action`);
     }
 
-    if (action === null) {
-      throw new Error(`No action provided for store ${this._name}`);
+    if (this._processors[action]) {
+      this._state = this._processors[action](this._state, data);
     }
-
-    this._state = this._processors[action](this._state, data);
     this._previousStates.push(this._state);
 
     this._subscribers.forEach((subscriber) => subscriber(this._state, action));

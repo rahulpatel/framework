@@ -12,7 +12,7 @@ export default {
     }
 
     if (this._persistence) {
-      initialState = this._persistence.get();
+      initialState = this._persistence.get(name);
     }
 
     const store = new Store(name, initialState);
@@ -25,7 +25,7 @@ export default {
         }
 
         this._persistenceTimeout = setTimeout(() => {
-          this._persistence.set(state);
+          this._persistence.set(name, state);
         }, 100);
       }
     });

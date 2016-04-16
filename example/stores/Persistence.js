@@ -3,12 +3,12 @@
 export default class Persistence {
 
   constructor() {
-    this._id = 'todos';
+    this._prefix = 'todos';
     this._state = [ ];
   }
 
-  get() {
-    const state = window.localStorage.getItem(this._id);
+  get(storeName) {
+    const state = window.localStorage.getItem(`${this._prefix}-${storeName}`);
     if (state) {
       console.log('[PERSISTENCE] Found state');
 
@@ -21,13 +21,13 @@ export default class Persistence {
     return this._state;
   }
 
-  set(state) {
+  set(storeName, state) {
     console.log('[PERSISTENCE] Updated');
     this._state = state;
     this._sync();
   }
 
   _sync() {
-    window.localStorage.setItem(this._id, JSON.stringify(this._state));
+    window.localStorage.setItem(`${this._prefix}-${storeName}`, JSON.stringify(this._state));
   }
 };
