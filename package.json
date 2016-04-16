@@ -1,16 +1,17 @@
 {
-  "name": "framework",
-  "version": "0.0.1",
-  "description": "An experimental framework",
-  "main": "src/index.js",
+  "name": "framewrk",
+  "version": "1.0.0",
+  "description": "An experimental client side javascript framework",
+  "main": "dist/framework.js",
   "scripts": {
+    "postinstall": "npm run build",
     "build": "NODE_ENV=production webpack --config ./build/webpack.production.js --progress --colors",
     "start": "webpack-dev-server --config ./build/webpack.example.js --hot --inline --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rahulpatel/framework.git"
+    "url": "git+https://github.com/rahulpatel/framewrk.git"
   },
   "author": "Rahul Patel <rahulpatel477@gmail.com>",
   "license": "MIT",

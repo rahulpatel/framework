@@ -312,6 +312,8 @@ const state = store.get();
 // state === initialState
 ```
 
+---
+
 <a name="storeActions"></a>
 
 ### actions()
@@ -331,6 +333,8 @@ const actions = store.actions();
 // }
 ```
 
+---
+
 <a name="storeProcessor"></a>
 
 ### processor(action, processor)
@@ -348,6 +352,8 @@ Give the store a processor (equivalent to a [reducer in redux](http://redux.js.o
 const store = framework.store('todos', [ ]);
 store.processor('ADD_TODO', (currentState, actionData) => [...currentState]);
 ```
+
+---
 
 <a name="storePublish"><a/>
 
@@ -376,6 +382,8 @@ store.publish('ADD_TODO', {
   completed: false
 });
 ```
+
+---
 
 <a name="storeSubscribe"></a>
 
@@ -435,6 +443,8 @@ Get the state for the given store from the persistence.
 **Arguments**
 
 * `storeName` - The name of the store.
+
+---
 
 <a name="persistenceSet"></a>
 
