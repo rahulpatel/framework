@@ -25,9 +25,7 @@ const AppView = (props) => {
   return (<h1>Hello, {props.name}!</h1>);
 }
 
-framework.setup({
-  defaultRoute: '/:name'
-});
+framework.setup();
 
 const container = document.createElement('div');
 document.body.appendChild(container);
@@ -95,20 +93,18 @@ The obligatory [todomvc example](example).
 
 ### setup(options)
 
-Provides you with an opportunity to set a default route and persistence the framework should use. You **must** call this before `start()`, if you provide a Persistence class then you must call this before you setup a store with the framework.
+Provides you with an opportunity to provided persistence to the framework. If you've provided a `PersistenceClass` then you **must** call this before creating any stores.
 
 **Arguments**
 
 * `options`
- - `defaultRoute` - The first route the framework should trigger, defaults to `/`.
- - `Persistence` - A class that implements the [persistence interface](#persistenceInterface).
+ - `PersistenceClass` - A class that implements the [persistence interface](#persistenceInterface).
 
 **Example**
 
 ```javascript
 const options = {
-  defaultRoute: '/',
-  Persistence: PersistenceClass
+  PersistenceClass
 };
 framework.setup(options);
 ```
@@ -119,7 +115,7 @@ framework.setup(options);
 
 ### start()
 
-Triggers the `defaultRoute` provided during the setup call.
+Starts the router.
 
 **Example**
 

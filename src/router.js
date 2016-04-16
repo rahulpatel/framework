@@ -14,7 +14,6 @@ export default {
     }
 
     this._router.addRoute(`#${config.path}`, (req, next) => {
-      console.log(req);
       if (__DEBUG__) {
         console.log(`[ROUTER][#${config.path}] Matched`);
       }

@@ -17,7 +17,8 @@ config.devtool = 'source-map';
 
 config.entry = path.join(__dirname, '..', 'src', 'index.js');
 
-config.output.libraryTarget = 'commonjs2';
+config.output.library = 'framework';
+config.output.libraryTarget = 'umd';
 
 config.plugins.push(uglifyPlugin, dedupePlugin);
 
