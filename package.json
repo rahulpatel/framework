@@ -4,7 +4,7 @@
   "description": "An experimental client side javascript framework",
   "main": "dist/framework.js",
   "scripts": {
-    "postinstall": "npm run build",
+    "preversion": "npm run build && git add dist/framework.** && git commit -m'[AUTO] Pre publish build'",
     "build": "NODE_ENV=production webpack --config ./build/webpack.production.js --progress --colors",
     "start": "webpack-dev-server --config ./build/webpack.example.js --hot --inline --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"

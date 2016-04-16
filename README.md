@@ -1,4 +1,4 @@
-# Framework
+# Framework a.k.a Framewrk
 
 ## Motivation
 This is a client side framework that I decided to write as a learning exercise. I've taken some ideas used in Redex and applied them to the framework i've written. Along with this i've also decided to limit the view layer to React only due to it's performance.
@@ -46,6 +46,12 @@ framework.route({
 });
 
 framework.start();
+```
+
+# Installation
+
+```
+npm install framewrk --save
 ```
 
 # Example
